@@ -1,0 +1,30 @@
+<style>
+	.something {
+		display:none;
+	}
+	.active{
+		display:block !important;
+	}
+</style>
+<%= @project.name %>
+<%= @project.description %>
+
+<%= render partial: 'comments/form', locals: {comment: @comment, project: @project, parent: nil}  %>
+
+
+
+<%= render @project.comments.where(parent_id: nil) %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function(){
+    $(".js-reply").on('click', function(){
+       var id=$(this).data("id");
+      $('#toggle-me-'+id).toggleClass('active')
+     // $.get("/projects/<%= @project.id %>/form", function(data){
+
+       // $("#reply-to-"+id).empty().append(data) 
+      //})
+    })
+  })
+</script>

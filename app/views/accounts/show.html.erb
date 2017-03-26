@@ -1,0 +1,6 @@
+Account ID: <%= @account.id %>
+Session ID: <%= session[:account_id] %>
+
+
+<%= link_to "Create A Project", new_project_path %>
+<%= link_to "Log Out", logout_path, method: :delete %>

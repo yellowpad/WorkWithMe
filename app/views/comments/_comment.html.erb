@@ -1,0 +1,13 @@
+<div style="padding:15px;">
+<%= comment.username %>
+	<div style="padding-left:3px;border-left-width:1px;border-left-color:black;border-left-style:solid;">
+	<%= comment.content %>
+	<%= link_to "Reply", '#', class: "js-reply", data: {id: comment.id}  %>
+			<div id="reply-to-<%= comment.id %>"></div>
+			<div class="something" id="toggle-me-<%= comment.id %>">
+			  	<%= render partial: 'comments/form', locals: {project: comment.project, comment: Comment.new, parent: comment.id} %>
+			</div>
+
+	<%= render comment.replies if comment.replies.any? %>
+	</div>
+</div>

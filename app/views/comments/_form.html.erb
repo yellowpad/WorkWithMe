@@ -1,0 +1,7 @@
+<%= form_for [project,comment] do |f| %>
+	<%= f.text_area :content %>
+	<% if parent %>
+		<%= f.hidden_field :parent_id, :value => parent %>
+	<% end %>
+	<%= f.submit %>
+<% end %>
