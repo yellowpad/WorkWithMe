@@ -56,7 +56,8 @@
       
       catchthepromise.done(function(tag){
           $("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+tag["name"]+"</a><span class='tag-x'>X</span></span>");
-          $("#category-input").val("")
+          $("#category-input").val("");
+          $("#js-tag").prop('disabled', false);   
       })
     })
   })
