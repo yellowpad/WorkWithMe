@@ -1,2 +1,6 @@
-<%= project.name %><br>
-<%= project.description %><br>
+<div class="col-md-6 col-md-offset-3 mainbod" style="padding: 10px; border-top: 1px solid #eee;">
+  <%= link_to project.name, project %> posted <%= time_ago_in_words(project.created_at) %><br>
+  <%= project.description %><br>
+  <br />
+  <%= render project.categories %>
+</div>

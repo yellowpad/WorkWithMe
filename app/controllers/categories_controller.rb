@@ -1,11 +1,12 @@
 class CategoriesController < ApplicationController
+
 	
-	def new 
+	def new
 		@category = Category.new
 		@categories = Category.all
 	end
 
-	def show 
+	def show
 		@category = Category.find(params[:id])
 	end
 
@@ -13,7 +14,7 @@ class CategoriesController < ApplicationController
 		@category = Category.find_or_create_by(name: category_params[:name].downcase)
 		redirect_to new_category_path
 	end
-	
+
 	def autocomplete
 		if params[:term]
 			searchterm=params[:term].downcase

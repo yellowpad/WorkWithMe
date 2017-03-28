@@ -1,6 +1,46 @@
-Account ID: <%= @account.id %>
-Session ID: <%= session[:account_id] %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 mainbod">
+    Account ID: <%= @account.id %>
+    Session ID: <%= session[:account_id] %>
 
 
 <%= link_to "Create A Project", new_project_path %>
 <%= link_to "Log Out", logout_path, method: :delete %>
+
+<p>Add Tags:</p>
+<%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
+<%= f.text_field :category, id: "category-input" %>
+<%= f.submit "Tag Dat Shit", id: "js-tag" %>
+<% end %>
+<div id="appendatshit"><%= render @account.categories %></div>
+</div>
+</div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 mainbod">
+<h1>Newsfeed</h1>
+</div>
+</div>
+
+<%= render @account.newsfeed_projects %>
+
+<script>
+  $(function(){
+    $("#new_subscription").submit(function(event){
+
+      event.preventDefault();
+
+      $muh_form = $(this).serialize();
+
+      var id = $(this).data("id")
+
+      var catchthepromise = $.post('/accounts/' + id + '/subscriptions', $muh_form);
+
+      catchthepromise.done(function(sub){
+          $("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+sub["name"]+"</a><span class='tag-x'>X</span></span>");
+          $("#category-input").val("")
+      })
+    })
+  })
+
+
+</script>
