@@ -1,13 +1,18 @@
-<div style="padding:15px;">
-<%= comment.username %>
-	<div style="padding-left:3px;border-left-width:1px;border-left-color:black;border-left-style:solid;">
-	<%= comment.content %>
-	<%= link_to "Reply", '#', class: "js-reply", data: {id: comment.id}  %>
+<div style="padding:15px;padding-bottom:0;padding-top:0;">
+	<div>
+		<div style="border-left:1px solid #E8E8E8;padding:10px;overflow-wrap: break-word">
+			<span style="margin-bottom:4px;"><strong style="color:#F06095;"><%= comment.username %></strong> <%= time_ago_in_words(comment.created_at) %> ago</span><br>
+			<%= comment.content %>
+			<button class="js-reply" data-id="<%= comment.id %>">Reply</button>
+		</div>
+
+		<div style="padding-left:3px;border-left-width:1px;border-left-color:rgba(0,0,0,0.1);border-left-style:solid;">
 			<div id="reply-to-<%= comment.id %>"></div>
 			<div class="something" id="toggle-me-<%= comment.id %>">
-			  	<%= render partial: 'comments/form', locals: {project: comment.project, comment: Comment.new, parent: comment.id} %>
+				  	<%= render partial: 'comments/form', locals: {project: comment.project, comment: Comment.new, parent: comment.id} %>
 			</div>
 
-	<%= render comment.replies if comment.replies.any? %>
+			<%= render comment.replies if comment.replies.any? %>
+		</div>
 	</div>
 </div>

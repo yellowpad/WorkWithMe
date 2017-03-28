@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
 	def show 
 		@project = Project.find(params[:id])
 		@comment = Comment.new
+		@tag = Tag.new
 	end
 
 	def edit
@@ -39,11 +40,9 @@ class ProjectsController < ApplicationController
 		
 		@comment = Comment.new
 		@project = Project.find(params[:id])
-		# format.html { 
-		# 	render "reply_form", :layout => false  
-		# }
+
 		render :layout => false
-		# render :form
+
 	end
 
 	private 

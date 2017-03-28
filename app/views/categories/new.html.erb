@@ -1,0 +1,8 @@
+<%= form_for @category do |f| %>
+<%= f.text_field :name, id: "category-input" %>
+<%= f.submit %>
+<% end %>
+
+Categories: 
+
+<%= render @categories %>

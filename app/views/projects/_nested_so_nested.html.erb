@@ -1,0 +1,11 @@
+<%= form_for @nest do |nest| %>
+<%= nest.text_field :nest %>
+<% nest.fields_for do |evenmoarnested| %>
+	<%=evenmoarnested.text_field :soooooooo_nest %>
+	<%=evenmoarnested.fields_for do |next_level_nest| %>
+		<%= next_level_nest.text_field :hi %>
+		<%= next_le
+	<% end %>
+<% end %>
+<%= nest.submit %>
+<% end %>

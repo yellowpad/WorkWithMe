@@ -12,5 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require turbolinks
+//  require turbolinks
+//= require jquery-ui
+//= require bootstrap-sprockets
 //= require_tree .
+
+
+
+var search=(function(){
+  $('#category-input').autocomplete({
+    source: '/categories/autocomplete.json',
+  });
+})
+
+
+$(document).ready(search);
+$(document).on('page:load', search);
