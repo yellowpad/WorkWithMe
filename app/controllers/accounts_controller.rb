@@ -1,9 +1,10 @@
 class AccountsController < ApplicationController
-	def index 
+	def index
 		render plain: "HIIIII"
 	end
 
-	def show 
+	def show
 		@account = Account.find(params[:id])
+		@subscription=Subscription.new
 	end
 end
