@@ -6,7 +6,7 @@ class Account < ApplicationRecord
 
   has_many :subscriptions
   has_many :categories, through: :subscriptions
-  has_many :subscribed_tags, through: :categories, source: :tags
-  has_many :newsfeed_projects, through: :subscribed_tags, source: :project
+  #has_many :subscribed_tags, through: :categories, source: :tags
+  has_many :newsfeed_projects, through: :categories, source: :projects
 
 end
