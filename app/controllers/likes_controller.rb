@@ -8,13 +8,11 @@ class LikesController < ApplicationController
       like.heart-=1
     end
 
-    if like.save
-      flash[:error]="heart: " + like.heart.to_s
-    else
+    if !like.save
       flash[:error]=like.errors.full_messages[0]
     end
-    render plain: like.heart, status: 201
-    
+    render json: like, status: 201
+
   end
 
   def dislike
@@ -26,9 +24,7 @@ class LikesController < ApplicationController
       like.heart+=1
     end
 
-    if like.save
-      flash[:error]="heart: " + like.heart.to_s
-    else
+    if !like.save
       flash[:error]=like.errors.full_messages[0]
     end
     redirect_to like.project
