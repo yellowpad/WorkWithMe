@@ -23,6 +23,8 @@ class ProjectsController < ApplicationController
 	def show
 		@project = Project.find(params[:id])
 		@comment = Comment.new
+		@job = Job.new
+		@jobs = Job.all
 		@tag = Tag.new
 		@like = Like.find_or_create_by(project_id: @project.id, account_id: current_user.id)
 		respond_to do |format|

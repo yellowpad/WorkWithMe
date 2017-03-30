@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'subscriptions/create'
 
   get 'tags/create'
@@ -10,13 +11,14 @@ Rails.application.routes.draw do
     resources :tags, only: [:create]
     resources :skills, only: [:create]
     resources :comments
-    # resources :likes, only: [:create, :destroy]
+    resources :jobs, only: [:index, :new, :create, :show]
+
     post '/like', to: 'likes#like'
     post '/dislike', to: 'likes#dislike'
   end
 
   resources :accounts do
-    resources :subscriptions, only: [:create]
+    resources :subscriptions, only: [:create, :destroy]
     resources :brainsmarts, only: [:create]
   end
 
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
   post '/signup', to: "registrations#create"
   delete '/logout', to: "sessions#destroy"
   post '/login', to: "sessions#create"
-
   resources :categories, only: [:new, :show, :create] do
     collection do
       get 'autocomplete'

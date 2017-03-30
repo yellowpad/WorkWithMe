@@ -10,4 +10,6 @@ class Project < ApplicationRecord
 
   has_many :likes
   has_many :likers, through: :likes, source: :account
+
+  has_many :jobs
 end

@@ -6,5 +6,9 @@ class AccountsController < ApplicationController
 	def show
 		@account = Account.find(params[:id])
 		@subscription=Subscription.new
+		if current_user != @account
+			render plain: "poop"
+		end
 	end
+
 end

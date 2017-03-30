@@ -10,22 +10,82 @@
 <div id="testdiv"></div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 mainbod">
-    <div style="padding-bottom:20px;">
-      <h1><%= @project.name %></h1>
-      <p><%= @project.description %></p>
-      <p>Add Tags:</p>
-      <%= form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
-      <%= f.text_field :category, id: "category-input" %>
-      <%= f.submit "Tag Dat Shit", id: "js-tag" %>
+  
+
+  <div class="col-md-6 col-md-offset-1">
+    <div style="padding:20px;">
+      <div class="profile-container">
+        <h1><%= @project.name %></h1>
+        <p><%= @project.description %></p>
+        <div>
+            <!-- likes -->
+              ZAYNES LIKES
+            <!-- end likes -->      
+        </div>
+      <!-- <p>Add Tags:</p>
+      <% form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
+      <% f.text_field :category, id: "category-input" %>
+      <% f.submit "Tag Dat Shit", id: "js-tag" %>
       <% end %>
-      <div id="appendatshit"><%= render @project.categories %></div>
-    <%= render partial: 'comments/form', locals: {comment: @comment, project: @project, parent: nil}  %>
+      <div id="appendatshit"><% render @project.categories %></div> -->
+
+      <%= render partial: 'comments/form', locals: {comment: @comment, project: @project, parent: nil}  %>
+      </div>
     </div>
+    <div class="row">
+      <div style="padding:20px;">
+        <div class="mainbod profile-container">
+          <%= render @project.comments.where(parent_id: nil) %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
 
+  <div class="col-md-4">
+      <!-- Trigger the modal with a button -->
+      <div style="padding:20px;">
+        <div class="profile-container">
+          <div class="row" style="margin-top:30px;margin-bottom:30px;text-align:center;">
+            <p>Add A New Job & Bounty to this Project</p>
+            <button type="button" class="btn btn-info btn-lg yob-btn" data-toggle="modal" data-target="#myModal">Add Job</button>
+          </div>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Job to this Project</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Create a task.</p>
+                    <%= render partial: 'jobs/form', locals: {project: @project, job: @job } %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- End modal code -->
+      <div id="yobs" style="padding:20px;">
+          <% @jobs.each do |yob| %>
+            <div class="profile-container">
+              <h2>Job: <%= yob.title%></h2>
+              <p>Description: <%= yob.description%></p>
+              <p>Bounty: <%= yob.bounty %></p>
+              <p>Status: <span style="color:green;">Open</span></p>
+            </div>
+          <% end %>
+      </div>
+
+  
 <div class="row">
   <div class="col-md-6 col-md-offset-3 mainbod">
 
@@ -47,6 +107,7 @@
 		<!-- end likes -->
 <hr />
     <%= render @project.comments.where(parent_id: nil) %>
+
   </div>
 </div>
 
@@ -57,6 +118,40 @@
        var id=$(this).data("id");
       $('#toggle-me-'+id).toggleClass('active')
     })
+  })
+
+
+
+
+</script>
+
+<script>
+  $(function(){
+    $("#new_tag").submit(function(event){
+
+      event.preventDefault();
+
+      $muh_form = $(this).serialize();
+
+      var id = $(this).data("id")
+
+      var catchthepromise = $.post('/projects/' + id + '/tags', $muh_form);
+
+      catchthepromise.then(function(tag){
+          $("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+tag["name"]+"</a><span class='tag-x'>X</span></span>");
+          $("#category-input").val("");
+          $("#js-tag").prop('disabled', false);
+      })
+    })
+  })
+
+
+</script>
+
+
+<script>
+  
+$(function(){
 
 
 		// add tags

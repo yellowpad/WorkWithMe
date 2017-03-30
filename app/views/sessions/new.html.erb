@@ -1,5 +1,23 @@
-<%= form_for @account, url: login_path do |f| %>
-	<%= f.text_field :username %>
-	<%= f.password_field :password %>
-	<%= f.submit %>
-<% end %>
+<div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
+	<div style="padding:60px;">
+		<div class="signup-form-container" style="" id="panel">
+			<!-- Form -->
+			<div class="signup-header">Login</div>
+			<hr>
+			<%= form_for @account, url: login_path do |f| %>
+				<div class="form-field-container">
+					<%= f.label :username %>
+					<%= f.text_field :username, class: "form-control signup-field" %>
+				</div>
+				<div class="form-field-container">			
+					<%= f.label :password %>
+					<%= f.password_field :password, class: "form-control signup-field" %>
+				</div>
+				<div class="form-field-container">
+					<%= f.submit "Login", class: "btn btn-signup", id: "signup-btn"  %>
+				</div>
+			<% end %>
+			</div>
+		</div>
+	</div>
+</div>
