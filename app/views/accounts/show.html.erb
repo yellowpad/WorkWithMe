@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-3">Test</div>
- 
+
   <div class="account-box col-md-6 mainbod mid-section" style="margin-top:20px;margin-bottom:20px;">
     Account ID: <%= @account.id %>
     Session ID: <%= session[:account_id] %>
@@ -14,44 +14,23 @@
     <div class="input-wrap">
       <%= f.text_field :category, id: "category-input", class: "form-control tunnel-party" %>
     </div>
-    <div class="input-wrap"> 
+    <div class="input-wrap">
       <%= f.submit "Tag Dat Shit", id: "js-tag", class: "btn btn-main" %>
     </div><br>
     <% end %><br>
-   
+
     <h1>Newsfeed</h1>
-   
-    <%= render @account.newsfeed_projects %>    
+
+    <%= render @account.newsfeed_projects %>
   </div>
-  
+
   <div class="mid-section col-md-3">
     <div style="color:black;font-family:'Montserrat';font-weight:700;font-size:18px;margin-top:40px;">Your Interests</div>
-    <div id="appendatshit"><%= render @account.categories %></div>
-  </div>  
-
-
-<p>Add Tags:</p>
-<%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
-<%= f.text_field :category, id: "category-input" %>
-<%= f.submit "Tag Dat Shit", id: "js-tag" %>
-<% end %>
-<div id="appendatshit"><%= render @account.interests %></div>
-</div>
- 
-
-
-
-
-
-
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3 account-box">
+    <div id="appendatshit"><%= render @account.interests %></div>
   </div>
+
 </div>
 
-<div class="row">
-</div>
 
 <script>
   $(function(){
