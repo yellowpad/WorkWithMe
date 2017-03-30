@@ -16,9 +16,11 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800');
 
 body{
-background: #F9F9F9	
+background: #F9F9F9;
+font-family:'Montserrat';
 }
 .outer-textarea{
 	padding:2px;
@@ -62,5 +64,66 @@ margin-left:15px;
 }
 
 .tag-btn-inner{
+	color:black;
+	text-align:center;
+}
+
+.input-wrap{
+	width:40%;
+	float:left;
+}
+.account-box{
+	padding:10px;
+	background: #fff;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.09);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+
+}
+
+mid-section{
+	margin-top:20px;
+	margin-bottom:20px !important;	
+}
+
+.tunnel-party{
+
+}
+
+.muh-tags{
+	width:215px;
+	padding:8px;
+	background-color:white;
+    border: 1px solid #e5e5e5;
+}
+.muh-tags {
+	text-align:left;
+	color:black !important;
+    border: 1px solid #e5e5e5;
+    background-color: #fbfbfb;
+}
+/*
+
+
+.muh-tags-inner{
+	text-align:center;
+	color:black !important;	
+}
+
+
+*/
+
+
+.so-much-tags{
+	margin-top:8px;
+	margin-bottom:5px;
+	margin-left:60px;
+	margin-right:60px;	
+}
+
+.btn-main{
+	background:#DA552F;
+	border:1px solid #DA552F;
 	color:white;
 }
+
