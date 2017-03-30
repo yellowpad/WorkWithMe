@@ -29,6 +29,13 @@
     <div id="appendatshit"><%= render @account.categories %></div>
   </div>  
 
+
+<p>Add Tags:</p>
+<%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
+<%= f.text_field :category, id: "category-input" %>
+<%= f.submit "Tag Dat Shit", id: "js-tag" %>
+<% end %>
+<div id="appendatshit"><%= render @account.interests %></div>
 </div>
  
 
