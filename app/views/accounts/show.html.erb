@@ -1,11 +1,34 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 mainbod">
+  <div class="col-md-3">Test</div>
+ 
+  <div class="account-box col-md-6 mainbod mid-section" style="margin-top:20px;margin-bottom:20px;">
     Account ID: <%= @account.id %>
     Session ID: <%= session[:account_id] %>
 
 
-<%= link_to "Create A Project", new_project_path %>
-<%= link_to "Log Out", logout_path, method: :delete %>
+    <%= link_to "Create A Project", new_project_path %>
+    <%= link_to "Log Out", logout_path, method: :delete %>
+
+    <p>Add Tags:</p>
+    <%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
+    <div class="input-wrap">
+      <%= f.text_field :category, id: "category-input", class: "form-control tunnel-party" %>
+    </div>
+    <div class="input-wrap"> 
+      <%= f.submit "Tag Dat Shit", id: "js-tag", class: "btn btn-main" %>
+    </div><br>
+    <% end %><br>
+   
+    <h1>Newsfeed</h1>
+   
+    <%= render @account.newsfeed_projects %>    
+  </div>
+  
+  <div class="mid-section col-md-3">
+    <div style="color:black;font-family:'Montserrat';font-weight:700;font-size:18px;margin-top:40px;">Your Interests</div>
+    <div id="appendatshit"><%= render @account.categories %></div>
+  </div>  
+
 
 <p>Add Tags:</p>
 <%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
@@ -14,14 +37,21 @@
 <% end %>
 <div id="appendatshit"><%= render @account.interests %></div>
 </div>
-</div>
+ 
+
+
+
+
+
+
+
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 mainbod">
-<h1>Newsfeed</h1>
-</div>
+  <div class="col-md-6 col-md-offset-3 account-box">
+  </div>
 </div>
 
-<%= render @account.newsfeed_projects %>
+<div class="row">
+</div>
 
 <script>
   $(function(){
@@ -31,16 +61,15 @@
 
       $muh_form = $(this).serialize();
 
-      var id = $(this).data("id")
+      var id = $(this).data("id");
 
       var catchthepromise = $.post('/accounts/' + id + '/subscriptions', $muh_form);
 
       catchthepromise.done(function(sub){
           $("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+sub["name"]+"</a><span class='tag-x'>X</span></span>");
           $("#category-input").val("")
+          $("#js-tag").prop('disabled', false)
       })
     })
   })
-
-
 </script>
