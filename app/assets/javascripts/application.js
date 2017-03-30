@@ -21,8 +21,12 @@
 
 var search=(function(){
   $('#category-input').autocomplete({
-    source: '/categories/autocomplete.json',
-  });
+    source: '/categories/autocomplete.json'
+  })
+
+  $('#skill-input').autocomplete({
+    source: '/skills/autocomplete.json'
+  })
 })
 
 

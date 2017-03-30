@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'subscriptions/create'
 
   get 'tags/create'
@@ -21,6 +22,12 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
 
   resources :categories, only: [:new, :show, :create] do
+    collection do
+      get 'autocomplete'
+    end
+  end
+
+  resources :skills, only: [:new, :show, :create] do
     collection do
       get 'autocomplete'
     end
