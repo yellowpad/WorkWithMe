@@ -12,4 +12,6 @@ class Account < ApplicationRecord
   has_many :skills, through: :brainsmarts
   has_many :qualified_projects, through: :skills, source: :projects #projects that show up on qualified
 
+  has_many :likes
+  has_many :liked_projects, through: :likes, source: :project
 end

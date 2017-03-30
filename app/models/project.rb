@@ -7,4 +7,7 @@ class Project < ApplicationRecord
 
   has_many :requirements
   has_many :skills, through: :requirements
+
+  has_many :likes
+  has_many :likers, through: :likes, source: :account
 end

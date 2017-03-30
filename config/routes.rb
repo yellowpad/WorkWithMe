@@ -8,12 +8,18 @@ Rails.application.routes.draw do
 
   resources :projects do
     resources :tags, only: [:create]
+    resources :skills, only: [:create]
     resources :comments
+    # resources :likes, only: [:create, :destroy]
+    patch '/like', to: 'likes#like'
+    patch '/dislike', to: 'likes#dislike'
   end
 
   resources :accounts do
     resources :subscriptions, only: [:create]
+    resources :brainsmarts, only: [:create]
   end
+
   get '/projects/:id/form', to: "projects#reply_form"
   get '/login', to: "sessions#new"
   get '/signup', to: "registrations#new"
