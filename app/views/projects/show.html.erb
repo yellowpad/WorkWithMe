@@ -28,8 +28,16 @@
 
 <div class="row">
 	<!-- likes -->
-	<%= link_to "like", project_like_path(@project), method: :patch %>
-	<%= link_to "hate this", project_dislike_path(@project), method: :patch %>
+  <% if @like.heart == 0 %>
+  <% hollow = "-outline" %>
+  <% elsif @like.heart == 1 %>
+  <% hollow = "" %>
+  <% else %> 
+   <% hollow = "" %>
+  <% end %>
+	<%= link_to "<i id='thing1' class='icon icon-size ion-ios-heart#{hollow}'></i>".html_safe, '#', id: "heart-heart", data: { id: @project.id }, method: :patch %>
+  <%=  @project.likes.where(heart: 1 ).count %>
+	<% link_to "hate this", project_dislike_path(@project), method: :patch %>
 	<!-- end likes -->
 
   <div class="col-md-6 col-md-offset-3 mainbod">
@@ -69,3 +77,28 @@
 
 
 </script>
+
+
+<script>
+  
+$(function(){
+  $("#heart-heart").click(function(event){
+   
+      //event.preventDefault();
+   
+    var pid = $(this).data("id");
+
+    var url = '/projects/' + pid + '/like'
+    var thingy = $.post(url)
+    thingy.done(function(data){
+        $("#thing1").toggleClass('ion-ios-heart')
+        $("#thing1").toggleClass('ion-ios-heart-outline')    
+    })
+    return false; 
+  })
+})
+</script>
+
+
+
+

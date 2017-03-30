@@ -17,7 +17,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800');
-
+@import "ionicons";
 body{
 background: #F9F9F9;
 font-family:'Montserrat';
@@ -127,3 +127,24 @@ mid-section{
 	color:white;
 }
 
+
+.yesyes{
+color:#FF5252;	
+}
+.ion-ios-heart::before, .ion-ios-heart-outline::before {
+	font-size:50px;
+	width:50px !important;
+	height:50px !important;	
+}
+.ion-ios-heart{
+	width:50px !important;
+	height:50px !important;
+}
+.icon-size {
+font-size:40px !important;
+	width:50px !important;
+	height:50px !important;
+}
+#heart-heart{
+color:#FF5252;		
+}

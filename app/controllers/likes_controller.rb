@@ -13,7 +13,8 @@ class LikesController < ApplicationController
     else
       flash[:error]=like.errors.full_messages[0]
     end
-    redirect_to like.project
+    render plain: like.heart, status: 201
+    
   end
 
   def dislike

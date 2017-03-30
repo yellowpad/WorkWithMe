@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
 		@project = Project.find(params[:id])
 		@comment = Comment.new
 		@tag = Tag.new
-		@like = Like.new
+		@like = Like.find_or_create_by(project_id: @project.id, account_id: current_user.id)
 	end
 
 	def edit
