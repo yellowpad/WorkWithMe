@@ -1,11 +1,54 @@
-<%= form_for @account, url: signup_path do |f| %>
-	<%= f.label :username %>
-	<%= f.text_field :username %>
-	<%= f.label :email %>
-	<%= f.email_field :email %>
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-	<%= f.label :password_confirmation %>	
-	<%= f.password_field :password_confirmation %>
-	<%= f.submit %>
-<% end %>
+<!-- Bootstrap container div with col md 5-->
+<div class="col-md-6 col-md-offset-3" style="margin-top:20px;">
+	<!-- Inner div to set the actual width and border of the form container-->
+	<div style="padding:60px;">
+		<!-- Form container inside the border to set padding between the full container and the input fields lengths-->
+		<div class="signup-form-container" style="" id="panel">
+			<!-- Form -->
+			<div class="signup-header">Signup</div>
+			<hr>
+			<%= form_for @account, url: signup_path do |f| %>
+				<div class="form-field-container">
+					<%= f.label :username %>
+					<%= f.text_field :username, class: "form-control signup-field", placeholder: "Something you won't forget" %>
+				</div>
+				<div class="form-field-container">
+				<%= f.label :email %>
+				<%= f.email_field :email, class: "form-control signup-field", placeholder: "Make it real please!" %>
+				</div>
+				<div class="form-field-container">
+				<%= f.label :password %>
+				<%= f.password_field :password, class: "form-control signup-field", placeholder: "password123 is not a password..." %>
+				</div>
+				<div class="form-field-container">
+				<%= f.label :password_confirmation %>	
+				<%= f.password_field :password_confirmation, class: "form-control signup-field", placeholder: "did you forget already?" %>
+				</div>
+				<div class="btn-signup-container">
+				<%= f.submit "Signup", class: "btn btn-signup", id: "signup-btn" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	$(function(){
+
+		$("#signup-btn").click(function(e) {
+			e.preventDefault();
+		  	$("#panel").delay(100).animate({
+	    		marginTop: "-80px"
+			}, 200);
+	  		$("#panel").delay(100).animate({
+	        	marginTop: "+=1250px",
+	        	height: "+=50px"
+	    	}, 400);
+	    	return false;
+		});
+
+	})
+
+
+</script>

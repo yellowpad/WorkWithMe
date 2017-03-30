@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   	if logged_in?
   		current_user = Account.find(session[:account_id])
   	end
-
   end
   
   def logged_in?

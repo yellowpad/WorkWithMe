@@ -10,38 +10,89 @@
 <div id="testdiv"></div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 mainbod">
-    <div style="padding-bottom:20px;">
-      <h1><%= @project.name %></h1>
-      <p><%= @project.description %></p>
-      <p>Add Tags:</p>
-      <%= form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
-      <%= f.text_field :category, id: "category-input" %>
-      <%= f.submit "Tag Dat Shit", id: "js-tag" %>
+  
+
+  <div class="col-md-6 col-md-offset-1">
+    <div style="padding:20px;">
+      <div class="profile-container">
+        <h1><%= @project.name %></h1>
+        <p><%= @project.description %></p>
+        <div>
+            <!-- likes -->
+              <% if @like.heart == 0 %>
+                <% hollow = "-outline" %>
+              <% elsif @like.heart == 1 %>
+                <% hollow = "" %>
+              <% else %> 
+               <% hollow = "" %>
+              <% end %>
+              
+              <%= link_to "<i id='thing1' class='icon icon-size ion-ios-heart#{hollow}'></i>".html_safe, '#', id: "heart-heart", data: { id: @project.id }, method: :patch %>
+              <%=  @project.likes.where(heart: 1 ).count %>
+              <% link_to "hate this", project_dislike_path(@project), method: :patch %>
+            <!-- end likes -->      
+        </div>
+      <!-- <p>Add Tags:</p>
+      <% form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
+      <% f.text_field :category, id: "category-input" %>
+      <% f.submit "Tag Dat Shit", id: "js-tag" %>
       <% end %>
-      <div id="appendatshit"><%= render @project.categories %></div>
-    <%= render partial: 'comments/form', locals: {comment: @comment, project: @project, parent: nil}  %>
+      <div id="appendatshit"><% render @project.categories %></div> -->
+
+      <%= render partial: 'comments/form', locals: {comment: @comment, project: @project, parent: nil}  %>
+      </div>
     </div>
+    <div class="row">
+      <div style="padding:20px;">
+        <div class="mainbod profile-container">
+          <%= render @project.comments.where(parent_id: nil) %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-</div>
+  <div class="col-md-4">
+      <!-- Trigger the modal with a button -->
+      <div style="padding:20px;">
+        <div class="profile-container">
+          <div class="row" style="margin-top:30px;margin-bottom:30px;text-align:center;">
+            <p>Add A New Job & Bounty to this Project</p>
+            <button type="button" class="btn btn-info btn-lg yob-btn" data-toggle="modal" data-target="#myModal">Add Job</button>
+          </div>
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
 
-<div class="row">
-	<!-- likes -->
-  <% if @like.heart == 0 %>
-  <% hollow = "-outline" %>
-  <% elsif @like.heart == 1 %>
-  <% hollow = "" %>
-  <% else %> 
-   <% hollow = "" %>
-  <% end %>
-	<%= link_to "<i id='thing1' class='icon icon-size ion-ios-heart#{hollow}'></i>".html_safe, '#', id: "heart-heart", data: { id: @project.id }, method: :patch %>
-  <%=  @project.likes.where(heart: 1 ).count %>
-	<% link_to "hate this", project_dislike_path(@project), method: :patch %>
-	<!-- end likes -->
-
-  <div class="col-md-6 col-md-offset-3 mainbod">
-    <%= render @project.comments.where(parent_id: nil) %>
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Job to this Project</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Create a task.</p>
+                    <%= render partial: 'jobs/form', locals: {project: @project, job: @job } %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- End modal code -->
+      <div id="yobs" style="padding:20px;">
+          <% @jobs.each do |yob| %>
+            <div class="profile-container">
+              <h2>Job: <%= yob.title%></h2>
+              <p>Description: <%= yob.description%></p>
+              <p>Bounty: <%= yob.bounty %></p>
+              <p>Status: <span style="color:green;">Open</span></p>
+            </div>
+          <% end %>
+      </div>
   </div>
 </div>
 
@@ -53,6 +104,10 @@
 
     })
   })
+
+
+
+
 </script>
 
 <script>
@@ -67,7 +122,7 @@
 
       var catchthepromise = $.post('/projects/' + id + '/tags', $muh_form);
 
-      catchthepromise.done(function(tag){
+      catchthepromise.then(function(tag){
           $("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+tag["name"]+"</a><span class='tag-x'>X</span></span>");
           $("#category-input").val("");
           $("#js-tag").prop('disabled', false);
@@ -90,11 +145,16 @@ $(function(){
 
     var url = '/projects/' + pid + '/like'
     var thingy = $.post(url)
+   
     thingy.done(function(data){
+        
         $("#thing1").toggleClass('ion-ios-heart')
         $("#thing1").toggleClass('ion-ios-heart-outline')    
+    
     })
+
     return false; 
+  
   })
 })
 </script>
