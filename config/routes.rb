@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources :skills, only: [:create]
     resources :comments
     # resources :likes, only: [:create, :destroy]
-    patch '/like', to: 'likes#like'
-    patch '/dislike', to: 'likes#dislike'
+    post '/like', to: 'likes#like'
+    post '/dislike', to: 'likes#dislike'
   end
 
   resources :accounts do
