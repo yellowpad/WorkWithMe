@@ -1,5 +1,5 @@
 <div class="row">
-  
+
   <!-- User Prof Box-->
 
   <div class="col-md-3">
@@ -18,9 +18,9 @@
       </div>
     </div>
   </div>
-  
+
   <!-- End User Prof Box-->
-  
+
   <div class="account-box col-md-6 mainbod mid-section" style="margin-top:50px;margin-bottom:20px;">
     Account ID: <%= @account.id %>
     Session ID: <%= session[:account_id] %>
@@ -32,14 +32,14 @@
     <p>Add Tags:</p>
     <div>
       <%= form_for [@account, @subscription], data: { id: @account.id } do |f| %>
-        
+
         <div style="padding:20px;">
           <div class="input-group">
              <%= f.text_field :category, id: "category-input", class: "form-control" %>
              <span class="input-group-btn">
                 <%= f.submit "Add Category", id: "js-tag", class: "btn btn-cat" %>
              </span>
-          </div>   
+          </div>
         </div>
 
       <% end %>
@@ -47,7 +47,7 @@
 
       <h1>Newsfeed</h1>
 
-      <%= render @account.newsfeed_projects %>
+      <%= render @account.newsfeed_projects.uniq %>
   </div>
 
   <div class="mid-section col-md-3">
@@ -75,15 +75,15 @@
           $("#category-input").val("")
           $("#js-tag").prop('disabled', false)
       })
-    })  
+    })
 
     $(".kill-cat").click(function(event){
-      
+
       var xid = $(this).data("id");
 
       $("#tagger-"+xid).hide();
       var postything = $.delete('/accounts' + )
       return false;
-    })    
+    })
   })
 </script>
