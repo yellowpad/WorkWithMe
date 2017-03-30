@@ -19,17 +19,7 @@
         <p><%= @project.description %></p>
         <div>
             <!-- likes -->
-              <% if @like.heart == 0 %>
-                <% hollow = "-outline" %>
-              <% elsif @like.heart == 1 %>
-                <% hollow = "" %>
-              <% else %> 
-               <% hollow = "" %>
-              <% end %>
-              
-              <%= link_to "<i id='thing1' class='icon icon-size ion-ios-heart#{hollow}'></i>".html_safe, '#', id: "heart-heart", data: { id: @project.id }, method: :patch %>
-              <%=  @project.likes.where(heart: 1 ).count %>
-              <% link_to "hate this", project_dislike_path(@project), method: :patch %>
+              ZAYNES LIKES
             <!-- end likes -->      
         </div>
       <!-- <p>Add Tags:</p>
@@ -51,6 +41,7 @@
     </div>
 
   </div>
+
 
   <div class="col-md-4">
       <!-- Trigger the modal with a button -->
@@ -93,15 +84,39 @@
             </div>
           <% end %>
       </div>
+
+  
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 mainbod">
+
+		<!-- likes -->
+	  <% if @like.heart <= 0 %>
+	  	<% heart_icon = "ion-ios-heart-outline" %>
+	  <% else %>
+	  	<% heart_icon = "ion-ios-heart" %>
+	  <% end %>
+
+		<%= link_to "<i id='thing1' class='icon icon-size #{heart_icon}'></i>".html_safe, '#', id: "heart-heart", data: { id: @project.id }, method: :patch %>
+
+		Total Likes: <span id="like-count"><%= @project.likes.where(heart: 1).count %></span><br />
+		Liked by: <span id="liked-by">
+		<% @project.likes.where(heart: 1).each do |like| %>
+			<%= like.account.username %>
+		<% end %></span>
+		<% link_to "hate this", project_dislike_path(@project), method: :patch %>
+		<!-- end likes -->
+<hr />
+    <%= render @project.comments.where(parent_id: nil) %>
+
   </div>
 </div>
 
 <script type="text/javascript" charset="utf-8">
   $(function(){
+		// some thing
     $(".js-reply").on('click', function(){
        var id=$(this).data("id");
       $('#toggle-me-'+id).toggleClass('active')
-
     })
   })
 
@@ -137,28 +152,41 @@
 <script>
   
 $(function(){
-  $("#heart-heart").click(function(event){
-   
-      //event.preventDefault();
-   
-    var pid = $(this).data("id");
 
-    var url = '/projects/' + pid + '/like'
-    var thingy = $.post(url)
-   
-    thingy.done(function(data){
-        
-        $("#thing1").toggleClass('ion-ios-heart')
-        $("#thing1").toggleClass('ion-ios-heart-outline')    
-    
-    })
 
-    return false; 
-  
-  })
+		// add tags
+		$("#new_tag").submit(function(event){
+			event.preventDefault();
+			$muh_form = $(this).serialize();
+			var id = $(this).data("id")
+			var catchthepromise = $.post('/projects/' + id + '/tags', $muh_form);
+			catchthepromise.done(function(tag){
+					$("#appendatshit").append("<span class='btn tag-btn'><a class='tag-btn-inner' href='#'>"+tag["name"]+"</a><span class='tag-x'>X</span></span>");
+					$("#category-input").val("");
+					$("#js-tag").prop('disabled', false);
+			})
+		})
+
+		// likes
+	  $("#heart-heart").click(function(event){
+			//event.preventDefault()
+	    let pid = $(this).data("id");
+	    let url = '/projects/' + pid + '/like'
+	    $.post(url)
+				.done(function(data){
+					if (data["heart"] <= 0){
+						$("#thing1").addClass('ion-ios-heart-outline')
+						$("#thing1").removeClass('ion-ios-heart')
+					 	let str = $('#liked-by').html().replace(data["liker"],'')
+						$('#liked-by').html(str)
+					}else{
+		        $("#thing1").removeClass('ion-ios-heart-outline')
+						$("#thing1").addClass('ion-ios-heart')
+						$("#liked-by").append(data["liker"])
+					}
+					$("#like-count").html(data["project"].total_likes)
+		    })
+	    return false
+	  })
 })
 </script>
-
-
-
-
