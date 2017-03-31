@@ -9,31 +9,27 @@ class JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new(jobs_params)
-    @job.project = Project.find(params[:project_id])
-    #byebug
-    if @job.save
-      render json: @job, status: 201
+    project = Project.find(params[:project_id])
+    if project.account == current_user
+      @job = Job.new(job_params)
+      @job.project = project
+      if @job.valid?
+        @job.save
+        render json: @job, status: 201
+      else
+        render json: {errors: @job.errors}, status: 400
+      end
     else
-       render json: {errors: @job.errors}, status: 400
+      render json: {errors: "fucked up, this isn't your project bruh"}, status: 400
     end
-      #render json: @job
   end
 
-  def new 
+  def new
     @job = Job.new
   end
 
-  def edit
-  end
-
-  def update
-  end
-
-  def delete
-  end
-  private 
-    def jobs_params
-      params.require(:job).permit(:title,:description,:bounty, :project_id)
+  private
+    def job_params
+      params.require(:job).permit(:title,:description,:bounty)
     end
 end

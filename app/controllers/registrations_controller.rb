@@ -1,21 +1,27 @@
 class RegistrationsController < ApplicationController
 	skip_before_action :require_login
-	
-	def new 
+
+	def new
 		@account = Account.new
 		@category = Category.new
 	end
 
-	def create 
+	def create
 		@account = Account.new(account_params)
-		if @account.valid?	
+		if @account.valid?
 			@account.save
 			session["account_id"] = @account.id
-			redirect_to @account
-		else 
+			#redirect_to @account
+			respond_to do |format|
+				format.html { render :makesubs, locals:{account: @account, subscription: Subscription.new}, :layout => false  }
+			end
+		else
 			flash[:error] = @account.errors.full_messages[0]
-			render :new
+			render plain: "done fucked up"
 		end
+	end
+
+	def makesubs
 	end
 
 	private

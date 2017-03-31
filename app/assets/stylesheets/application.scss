@@ -22,6 +22,11 @@ body{
 background: #F9F9F9;
 font-family:'Montserrat';
 }
+
+.topbox{
+top:-2000px !important;
+
+}
 .outer-textarea{
 	padding:2px;
 }
@@ -59,7 +64,7 @@ background:white;
 
 .tag-x{
 font-size:9px;
-font-weight:700;	
+font-weight:700;
 margin-left:15px;
 float:right
 }
@@ -81,7 +86,7 @@ float:right
 
 mid-section{
 	margin-top:20px;
-	margin-bottom:20px !important;	
+	margin-bottom:20px !important;
 }
 
 .tunnel-party{
@@ -95,7 +100,7 @@ mid-section{
 	background-color:white;
     border: 1px solid #e5e5e5;
     border-radius:2px;
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);	    
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
 }
 .muh-tags {
 	text-align:left;
@@ -108,7 +113,7 @@ mid-section{
 
 .muh-tags-inner{
 	text-align:center;
-	color:black !important;	
+	color:black !important;
 }
 
 
@@ -119,7 +124,7 @@ mid-section{
 	margin-top:8px;
 	margin-bottom:5px;
 	margin-left:60px;
-	margin-right:60px;	
+	margin-right:60px;
 }
 
 .btn-main{
@@ -130,12 +135,12 @@ mid-section{
 
 
 .yesyes{
-color:#FF5252;	
+color:#FF5252;
 }
 .ion-ios-heart::before, .ion-ios-heart-outline::before {
 	font-size:50px;
 	width:50px !important;
-	height:50px !important;	
+	height:50px !important;
 }
 .ion-ios-heart{
 	width:50px !important;
@@ -147,7 +152,7 @@ font-size:40px !important;
 	height:50px !important;
 }
 #heart-heart{
-color:#FF5252;		
+color:#FF5252;
 }
 
 
@@ -156,11 +161,11 @@ color:#FF5252;
 .signup-form-container{
 	margin:auto;
 	border:1px solid #CED2DD;
-	background-color:white;	
+	background-color:white;
 	/*padding:60px;*/
 	padding-bottom:50px;
 	border-radius:4px;
-   box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.12);	
+   box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.12);
 }
 
 .signup-form-container form{
@@ -182,10 +187,10 @@ color:#FF5252;
  	color:white;
  	font-weight:700;
  	font-size:24px;
-    background: -webkit-linear-gradient(#F25B5B, #E83333); 
+    background: -webkit-linear-gradient(#F25B5B, #E83333);
     background: -o-linear-gradient(#F25B5B, #E83333);
-    background: -moz-linear-gradient(#F25B5B, #E83333); 
-    background: linear-gradient(#F25B5B, #E83333); 
+    background: -moz-linear-gradient(#F25B5B, #E83333);
+    background: linear-gradient(#F25B5B, #E83333);
 	transition:ease-in-out 0.5s;
 	border-radius:3px;
 	border:none;
@@ -196,10 +201,10 @@ color:#FF5252;
  	background: #F25B5B;
  	color:white;
  	font-weight:700;
-    background: -webkit-linear-gradient(#E83333,#F25B5B); 
+    background: -webkit-linear-gradient(#E83333,#F25B5B);
     background: -o-linear-gradient(#E83333,#F25B5B);
-    background: -moz-linear-gradient(#E83333,#F25B5B); 
-    background: linear-gradient(#E83333,#F25B5B); 
+    background: -moz-linear-gradient(#E83333,#F25B5B);
+    background: linear-gradient(#E83333,#F25B5B);
 }
 
 .signup-header{
@@ -208,7 +213,7 @@ color:#FF5252;
 	text-align:center;
 	padding:35px;
 	font-size:32px;
-	font-weight:600;	
+	font-weight:600;
 	border-top-left-radius:4px;
 	border-top-right-radius:4px;
 	margin-bottom:0;
@@ -237,7 +242,7 @@ input:focus{
 	}
 	input:focus:-webkit-autofill {
 		background-color: rgba(13,187,255, 0.015);
-		color:black	
+		color:black
 	}
 
 /* End Chrome Fix */
@@ -250,7 +255,7 @@ input:focus{
  	color:white;
  	font-weight:700;
  	font-size:18px;
-	transition:ease-in-out 0.5s	
+	transition:ease-in-out 0.5s
 }
 
 .btn-add-tag:hover{
@@ -258,7 +263,7 @@ input:focus{
 	transition:ease-in-out 0.5s;
  	background: #F25B5B;
  	color:white;
- 	font-weight:700;	
+ 	font-weight:700;
 }
 
 .tags-form{
@@ -268,7 +273,7 @@ input:focus{
  	color:white;
  	font-weight:700;
  	font-size:18px;
-	transition:ease-in-out 0.5s	
+	transition:ease-in-out 0.5s
 }
 
 .input-wrap{
@@ -287,7 +292,7 @@ input:focus{
 }
 
 .interests{
-color:black;font-family:'Montserrat';font-weight:700;font-size:18px;margin-top:40px;padding:10px;	
+color:black;font-family:'Montserrat';font-weight:700;font-size:18px;margin-top:40px;padding:10px;
 }
 
 
@@ -304,7 +309,7 @@ color:black;font-family:'Montserrat';font-weight:700;font-size:18px;margin-top:4
 	background: #fff;
     border-radius: 3px;
     border: 1px solid rgba(0,0,0,.09);
-    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);	
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
 	padding:10px;
 }
 
@@ -509,7 +514,7 @@ text-align:center;
 	border:1px solid #F0AD4E !important;
 }
 .ui-widget.ui-widget-content{
-	border-color:#F0AD4E !important;	
+	border-color:#F0AD4E !important;
 }
 
 .ui-slider-horizontal.green .ui-slider-handle{
@@ -536,12 +541,16 @@ textarea {
 
 .ui-slider-handle:focus, ui-corner-all:focus, ui-state-default:focus, slider4, green, ui-slider, ui-corner-all, ui-slider-horizontal, ui-widget ui-widget-content, ui-slider-pips, ui-slider-float{
 outline:0;
-highlight:none;
-	
+
 }
 
 
 .close{
 	color:black !important;
 	opacity:1;
+}
+
+
+.nextButton{
+	display:none;
 }

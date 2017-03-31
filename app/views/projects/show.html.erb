@@ -37,11 +37,13 @@
         </div>
 
 				<!-- tag form -->
-      <p>Add Tags:</p>
-      <%= form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
-      <%= f.text_field :category, id: "category-input" %>
-      <%= f.submit "Tag Dat Shit", id: "js-tag" %>
-      <% end %>
+			<% if @project.account == current_user %>
+	      <p>Add Tags:</p>
+	      <%= form_for [@project, @tag], id: "muhform", data: { id: @project.id } do |f| %>
+	      <%= f.text_field :category, id: "category-input" %>
+	      <%= f.submit "Tag Dat Shit", id: "js-tag" %>
+	      <% end %>
+			<% end %>
 			<!-- end tag form -->
 
 			<!-- tags -->
@@ -66,6 +68,7 @@
 
 
   <div class="col-md-4">
+		<% if @project.account == current_user %>
       <!-- Trigger the modal with a button -->
       <div style="padding:20px;">
         <div class="profile-container">
@@ -96,6 +99,7 @@
           </div>
       </div>
       <!-- End modal code -->
+			<% end %>
       <div id="yobs" style="padding:20px;">
         <%= render @project.jobs %>
       </div>

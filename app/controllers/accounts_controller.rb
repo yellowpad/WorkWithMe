@@ -9,6 +9,12 @@ class AccountsController < ApplicationController
 		if current_user != @account
 			render plain: "poop"
 		end
+		respond_to do |format|
+			format.html
+			format.json{
+				render json: @account
+			}
+		end
 	end
 
 end

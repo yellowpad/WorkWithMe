@@ -1,0 +1,25 @@
+<div style="padding:60px;">
+  <!-- Form container inside the border to set padding between the full container and the input fields lengths-->
+  <div class="signup-form-container" style="" id="panel">
+    <!-- Form -->
+    <div class="signup-header">All Your Interest Are Belong to Us</div>
+    <hr>
+    <%= form_for [account, subscription], data: { id: account.id } do |f| %>
+
+      <div style="padding-left:30%;padding-right:30%;">
+        <div class="input-group">
+           <%= f.text_field :category, id: "category-input", class: "form-control" %>
+           <span class="input-group-btn">
+              <%= f.submit "Add Category", id: "js-tag", class: "btn btn-cat" %>
+           </span>
+        </div>
+      </div>
+
+    <% end %>
+    <div style="text-align:center;"><%= link_to "Skip This Step", account %></div>
+
+    <div class="nextButton" style="text-align:center;"><%= link_to "Next", account %></div>
+
+    </div>
+  </div>
+</div>

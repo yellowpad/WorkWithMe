@@ -1,5 +1,5 @@
 class Job < ApplicationRecord
 	belongs_to :project
 
-	validates :bounty, numericality: {in: 9..20}
+	validates :bounty, inclusion: {in: 9..20}
 end

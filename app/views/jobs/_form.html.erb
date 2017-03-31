@@ -1,4 +1,4 @@
-<%= form_for [project, job], id: "shippo" do |f| %>
+<%= form_for [project, job], data:{id: project.id} do |f| %>
   <div class="form-field-container">
     <%= f.label :title %>
     <%= f.text_field :title, class: "form-control" %>
@@ -8,7 +8,6 @@
     <%= f.text_area :description, class: "form-control"  %>
   </div>
     <%= f.hidden_field :bounty, id: "poop" %>
-    <input name="project_id" type="hidden" value="<%= project.id%>">
   <div class="form-field-container">
     <p style="padding-top:15px;font-weight:600;">Set a Bounty for this Job: </p>
     <section class="wrapper">
@@ -22,56 +21,30 @@
 <% end %>
 
 <script>
-$(function(){
-	
-	$("#dat_stuf").click(function(e){
+$(document).on('submit','#new_job',function(event){
+  event.preventDefault();
+  let $test=$('.ui-slider-tip').text()
+  $('#poop').val($test)
+  let $jobvals = $(this).serialize();
+  let $id = $(this).data("id");
+  let url = "/projects/" + $id + "/jobs"
 
-		e.preventDefault();
-
-    var test = $(".ui-slider-tip").text();
-
-    $("#poop").val(test); 
-
-    $somethin = $('form').serialize();
-    console.log($somethin)
-		// var test = $(".ui-slider-tip").text();
-		// $morethings = $somethin + "&bounty=" + test;
-		console.log("Test Value Is: ");
-		console.log(test);
-		
-		url = "/projects/" + <%= project.id %> + '/jobs';	
-			
-		var thing=$.post(url, $somethin)
-    
-    thing.done(function(data){
-
-			if ( data) {
+  $.post(url, $jobvals)
+    .then((data)=>{
         $('#myModal').modal('toggle');
-       
         let muhData = "title: " + data['title'] + " description: " + data["description"]
-        debugger
         $("#yobs").append(muhData)
-       
-       // debugger
-        
-        console.log("Whaaaaaatt")
-
-
-			} else{
-
-			}
-		})
-
-    return false;    
-
-	})
-
-})
-
+      }).catch((error)=>{
+        $('.modal-content').html("<h1 style='text-align: center; font-size: 50px;'>YOU FUCKED UP</h1>")
+        $('.modal-content').append("<h2 style='text-align: center'>" + error["responseText"] + "</h2>")
+        $("#dat_stuf").prop('disabled', false)
+      })
+});
+// why when you use function(event){} you can use $(this), but with (event)=>{} you can't
 </script>
 
 <script>
-	
+
 	var points = 20;
 
 /* jquery slider pips plugin, version 0.1 */
