@@ -1,0 +1,4 @@
+<div class="<%= classname %>" id="tagger-<%= interest.id %>">
+  <span class="muh-tags-inner"><%= link_to interest.name, interest, class: "tag-btn-inner",id: "cat-" + interest.id.to_s %>
+  <a data-id="<%= interest.id %>" data-account="<%= current_user.id %>" class="kill-cat" href="#"><span class="tag-x">X</span></a></span>
+</div>

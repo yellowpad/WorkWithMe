@@ -52,7 +52,10 @@
 
   <div class="mid-section col-md-3">
     <div class="interests">Your Interests</div>
-    <div id="subpanel"><%= render @account.interests %></div>
+    <div id="subpanel">
+      <% @account.interests.each do |interest| %>
+      <%= render partial: 'interest', locals: {interest: interest, classname: "muh-tags"} %>
+      <% end %></div>
   </div>
 
 </div>
