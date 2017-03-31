@@ -3,6 +3,7 @@ class RegistrationsController < ApplicationController
 	
 	def new 
 		@account = Account.new
+		@category = Category.new
 	end
 
 	def create 

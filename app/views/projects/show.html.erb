@@ -97,14 +97,7 @@
       </div>
       <!-- End modal code -->
       <div id="yobs" style="padding:20px;">
-          <% @jobs.each do |yob| %>
-            <div class="profile-container">
-              <h2>Job: <%= yob.title%></h2>
-              <p>Description: <%= yob.description%></p>
-              <p>Bounty: <%= yob.bounty %></p>
-              <p>Status: <span style="color:green;">Open</span></p>
-            </div>
-          <% end %>
+        <%= render @project.jobs %>
       </div>
 
 

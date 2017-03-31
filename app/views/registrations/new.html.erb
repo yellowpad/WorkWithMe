@@ -7,7 +7,7 @@
 			<!-- Form -->
 			<div class="signup-header">Signup</div>
 			<hr>
-			<%= form_for @account, url: signup_path do |f| %>
+			<%= form_for @account, url: signup_path, id: "signup-form-1" do |f| %>
 				<div class="form-field-container">
 					<%= f.label :username %>
 					<%= f.text_field :username, class: "form-control signup-field", placeholder: "Something you won't forget" %>
@@ -32,23 +32,67 @@
 	</div>
 </div>
 
+<div>
+
+
+
 <script>
 	
 	$(function(){
 
-		$("#signup-btn").click(function(e) {
+		//on submit
+		$("#signup-form-1").submit(function(e){
 			e.preventDefault();
-		  	$("#panel").delay(100).animate({
-	    		marginTop: "-80px"
-			}, 200);
-	  		$("#panel").delay(100).animate({
-	        	marginTop: "+=1250px",
-	        	height: "+=50px"
-	    	}, 400);
-	    	return false;
-		});
+
+
+			var signupData = $(this).serialize();
+					
+			var url = "/signup";	
+				
+			var signup = $.post(url, signupData);
+			    
+			    
+			signup.done(function(data){
+			 	
+			 	console.log(data);
+	
+			  	$("#panel").delay(100).animate({
+		    		marginTop: "-80px"
+				}, 200);
+		  		$("#panel").delay(100).animate({
+		        	marginTop: "+=1250px",
+		        	height: "+=50px"
+		    	}, 400);
+		    	return false;
+
+			})
+
+
+		})
 
 	})
 
 
+		// $("#signup-btn").click(function(e) {
+		// 	e.preventDefault();
+		//   	$("#panel").delay(100).animate({
+	 //    		marginTop: "-80px"
+		// 	}, 200);
+	 //  		$("#panel").delay(100).animate({
+	 //        	marginTop: "+=1250px",
+	 //        	height: "+=50px"
+	 //    	}, 400);
+	 //    	return false;
+		// });
+
+		//ajax request
+		//account create action needs to set their cookie + render json: @account
+		//serializer for account (for above)
+
+		//on success, display subscriptions form + add new data-id: @account.id to form 2
+		//option to skip -> ajax request to move on to next form
+		//on submit, ajax request for next form
+
+
 </script>
+

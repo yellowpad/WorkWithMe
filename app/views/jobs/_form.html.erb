@@ -1,16 +1,22 @@
 <%= form_for [project, job], id: "shippo" do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title, class: "form-control" %>
-<%= f.label :description %>
-<%= f.text_area :description, class: "form-control"  %>
-<%= f.hidden_field :bounty, id: "poop" %>
-<input name="project_id" type="hidden" value="<%= project.id%>">
-<p style="padding-top:15px;font-weight:600;">Set a Bounty for this Job: </p>
-<section class="wrapper">
-  <div class="slider4 green"></div>
-  <br><br>
-</section>
-<div style="">
+  <div class="form-field-container">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-field-container">
+    <%= f.label :description %>
+    <%= f.text_area :description, class: "form-control"  %>
+  </div>
+    <%= f.hidden_field :bounty, id: "poop" %>
+    <input name="project_id" type="hidden" value="<%= project.id%>">
+  <div class="form-field-container">
+    <p style="padding-top:15px;font-weight:600;">Set a Bounty for this Job: </p>
+    <section class="wrapper">
+      <div class="slider4 green"></div>
+      <br><br>
+    </section>
+  </div>
+<div class="btn-signup-container">
 	<%= f.submit "Create Task", class: "btn-signup", id: "dat_stuf" %>
 </div>
 <% end %>

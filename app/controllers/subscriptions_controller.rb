@@ -10,6 +10,13 @@ class SubscriptionsController < ApplicationController
   	render json: @category, status: 201
   end
 
+  def destroy
+    category=params[:id]
+    account=params[:account_id]
+    subscription=Subscription.find_by(category_id: category, account_id: account)
+    subscription.destroy
+  end
+
   private
   def subscription_params
   	params.require(:subscription).permit(:category)

@@ -71,19 +71,35 @@
       var catchthepromise = $.post('/accounts/' + id + '/subscriptions', $muh_form);
 
       catchthepromise.done(function(sub){
-          $("#appendatshit").append("<div class='muh-tags'><span class='muh-tags-inner'><a class='tag-btn-inner' href='#'>"+sub["name"]+"</a><a data-id='"+sub["id"]+"' class='kill-cat' href='#''><span class='tag-x'>X</span></a></span></div>");
+          $("#appendatshit").append("<div class='muh-tags' id='tagger-" + sub["id"]+ "'><span class='muh-tags-inner'><a class='tag-btn-inner' href='#'>"+sub["name"]+"</a><a data-id='"+sub["id"]+"' data-account='" + <%= @account.id %> + "'  class='kill-cat' href='#'><span class='tag-x'>X</span></a></span></div>");
           $("#category-input").val("")
           $("#js-tag").prop('disabled', false)
       })
+      return false
     })
 
-    $(".kill-cat").click(function(event){
+
+  // deletes categories
+    $(document).on("click", ".kill-cat", function(event){
 
       var xid = $(this).data("id");
+      var acct = $(this).data("account")
+      var url="/accounts/" + acct + "/subscriptions/" + xid
+      
+      var req = $.ajax({
+        type: "DELETE",
+        url: url
+      });
+      
+      req.done(function(data){
+         //hmmmmm
+         $("#tagger-"+xid).hide();
+      });
 
-      $("#tagger-"+xid).hide();
-      var postything = $.delete('/accounts' + )
       return false;
     })
+
+
+
   })
 </script>
